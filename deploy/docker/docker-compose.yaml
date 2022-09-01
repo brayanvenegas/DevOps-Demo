@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     # build: ./sonarqube_home
-    image: mc1arke/sonarqube-with-community-branch-plugin
+    image: sonarqube
 
     ports:
       - "9000:9000"
@@ -33,6 +33,10 @@ services:
       - sonarqube_conf:/opt/sonarqube/conf
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_extensions:/opt/sonarqube/extensions
+      #Directorio para agregar el plugin manualmente
+      - ./sonarqube/sonarqube-community-branch-plugin-1.12.0.jar:/opt/sonarqube/extensions/plugins/sonarqube-community-branch-plugin-1.12.0.jar
+      - ./Sonarqube/sonarqube-community-branch-plugin-1.12.0.jar:/opt/sonarqube/lib/common/sonarqube-communitty-branch-plugin-1.12.0.jar
+
     restart: unless-stopped
     deploy:
       resources:
